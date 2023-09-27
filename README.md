@@ -1,3 +1,43 @@
+# Popis Kódu
+
+App.js je hlavný komponent, ktorý obsahuje všetky ostatné komponenty aplikácie.
+App.js sa stará aj o počiatočné vytiahnutie dát z Api, ktoré potom ukladá do redux storu.
+
+TimeIntervalButton.js je komponent navhnutý na to aby si používateľ vybral interval údajov, ktoré chce z Api vytiahnuť.
+V komponente je zakomentovaná funkcia na fetchovanie dát z Api pomocou parametrov from a to.
+
+LossColumnChart.js, SalesColumnChart.js, CostsColumnChart.js sú 3 komponenty, ktoré vyťahujú z redux storu aktuálne dáta (podľa ich úlohy). Všetky 3 komponenty využívaju komponent MyColumnChart.js, ktorému pošlú dáta na vykreslenie.
+
+MyColumnChart.js je komponent, ktorý vykresľuje malý stĺpcový graf, pričom údaje na vykreslenie očakáva z props.
+
+DphTable.js je komponent, ktorý si z redux storu vytiahne dáta o dph a tie vypíše do tabuľky.
+
+MyAreasplineChart.js je komponent, ktorý vytiahne dáta z redux storu a tieto dáta zakreslí do Areaspline grafu.
+
+BusinessTable.js je komponent, ktorý vytiahne dáta z redux storu a pre každý mesačný záznam potom vytvára komponent OneRow.js.
+
+OneRow.js je komponent, ktorý cez props očakáva dáta o jednom mesiaci. Tieto dáta zapíše do riadku tabuľky. Tento komponent sa ešte stará o odstránenie daného riadku a editovanie daného riadku v redux store.
+
+AddRecordButton.js je komponent predstavujúci tlačidlo. Toto tlačidlo slúži na pridávanie nových záznamov do redux storu. Po stlačnení tlačídla sa otvorí modálne okno, v ktorom si používať vykliká aký záznam chce pridať (vypočítajú sa DPH hodnoty).
+Tento záznam sa potom uloží do redux storu. V AddRecordButton.js je zakomentovaná funkcia s názvom addNewRecord_apiVersion, ktorá by sa dala využiť, ak by sme chceli dáta posielať na Api a neukladať si ich do redux storu. V takomm prípade by sa po odoslaní post requestu museli znovu fetchnut dáta z Api, aby sme používali nové dáta (podobná úvaha aj pri edite a vymazávaní dát).
+
+SalesPieChart.js je komponent, ktorý vyťahuje z redux storu dáta o tržbách a tie posiela komponentu PieChart.js.
+
+CostsPieChart.js je komponent, ktorý vyťahuje z redux storu dáta o nákladoch a tie posiela komponentu PieChart.js.
+
+PieChart.js je komponent, ktorý pomocou dát, ktoré očakáva z props nakreslí koláčový graf.
+
+Fungovanie:
+Aplikácia si z Api vytiahne potrebné dáta. Tieto dáta do reduxu ukladáme v rovnakom formáte ako boli v Api, to znamená ako jeden veľký objekt.
+Vo všetkých komponentoch, kde potrebujeme pracovať s týmito dátami používame useSelector. Ak tieto dáta upravujeme alebo mažeme používame useDispatch/Reducer. 
+V aplikácie je čiastočné ošetrovanie zlých vstupov. 
+
+Aplikáciu je možné vyskúšať na tomto linku: https://business-analyse.netlify.app
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
