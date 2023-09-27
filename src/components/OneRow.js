@@ -23,6 +23,7 @@ const OneRow = ({record, index}) => {
     const dispatch = useDispatch()
 
     useEffect( () =>{
+        setEdit(false)
         const newDate = new Date(record.month)
         setMonthValue(newDate.toISOString().split('T')[0])
         setCostsValue(record.costsAmount)
